@@ -217,6 +217,11 @@
             android:textStyle="bold"
             android:textColor="#080883"
             tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/responseText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
