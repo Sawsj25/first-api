@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.util.Log;
 import android.widget.Toast;
 
-
 import java.util.List;
 
 import retrofit2.Call;
@@ -29,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private CheckBox checkBox_remember;
     public static final String TAG = "volley";
     public static final String EMAIL = "email";
+    public static final String PASSWORD = "password";
     private TextView responseText;
     APIInterface apiInterface;
     SharedPreferences sharedPreferences;
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onResponse(Call<MultipleResource> call, Response<MultipleResource> response) {
 
 
-                Log.d("TAG",response.code()+"");
+                Log.d("TAG", response.code() + "");
 
                 String displayResponse = "";
 
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         /**
          POST name and job Url encoded.
          **/
-        Call<UserList> call3 = apiInterface.doCreateUserWithField("morpheus","leader");
+        Call<UserList> call3 = apiInterface.doCreateUserWithField("morpheus", "leader");
         call3.enqueue(new Callback<UserList>() {
             @Override
             public void onResponse(Call<UserList> call, Response<UserList> response) {
@@ -175,6 +175,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sharedPreferences = getSharedPreferences(MainActivity.TAG, MODE_PRIVATE);
         String email = spref.getSharedPreferences(this).getString(spref.EMAIL, "");
         editText_email.setText(email);
+        sharedPreferences =getSharedPreferences(MainActivity.TAG,MODE_PRIVATE);
+        String password = spref.getSharedPreferences(this).getString(spref.PASSWORD,"");
+        editText_password.setText(password);
     }
 
     private void onclick() {
@@ -185,6 +188,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public static class spref {
         public static final String EMAIL = "email";
+        public static final String PASSWORD = "password";
         static SharedPreferences sharedPreferences;
 
         public static SharedPreferences getSharedPreferences(Context context) {
@@ -196,11 +200,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        if (view == button_signIn) {
+        if (view.getId() == button_signIn.getId()) {
             String email = editText_email.getText().toString().trim();
             spref.getSharedPreferences(this).edit().putString(spref.EMAIL, email).apply();
         }
-        if (view == textView_forgetPassword) {
+        if (view.getId()== editText_password.getId()) {
+            String password = editText_password.getText().toString().trim();
+            spref.getSharedPreferences(this).edit().putString(spref.PASSWORD, password).apply();
 
         }
         if (view == editText_socialSignUp) {
@@ -208,23 +214,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void validateEmail() {
+    private boolean validateEmail() {
         String val = editText_email.getText().toString().trim();
+        String emailPattern = "\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\b";
         if (val.isEmpty()) {
             editText_email.setError("Field cannot empty");
+            return false;
+        }else if(!val.matches(emailPattern)) {
+                editText_email.setError("Invalid email address");
+                return false;
         } else {
             editText_email.setError(null);
+            return true;
         }
     }
 
     private boolean validatePassword() {
         String val = editText_password.getText().toString().trim();
-        String emailPattern = "[a-zA-z0-9._-]+0[a-z]+\\.+[a-z]+";
+        String passwordPattern = "[a-zA-z0-9._-]+0[a-z]+\\.+[a-z]+";
 
         if (val.isEmpty()) {
             editText_password.setError("Field cannot be empty");
             return false;
-        } else if (!val.matches(emailPattern)) {
+        } else if (!val.matches(passwordPattern)) {
             editText_password.setError("Invalid email address");
             return false;
         } else {
