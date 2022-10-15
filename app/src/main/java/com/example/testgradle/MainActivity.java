@@ -11,7 +11,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private ImageView chat_background, imageView_facebook, imageView_google, imageView_linkdin, imageView_twitter;
@@ -29,7 +28,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         initViews();
         onclick();
-
+        validateEmail();
+        validatePassword();
     }
 
     private void initViews() {
@@ -83,13 +83,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private boolean validateName() {
+    private void validateEmail() {
         String val = editText_email.getText().toString().trim();
         if (val.isEmpty()) {
             editText_email.setError("Field cannot empty");
-            return false;
         } else {
             editText_email.setError(null);
+        }
+    }
+
+    private boolean validatePassword() {
+        String val = editText_password.getText().toString().trim();
+        String emailPattern = "[a-zA-z0-9._-]+0[a-z]+\\.+[a-z]+";
+
+        if (val.isEmpty()) {
+            editText_password.setError("Field cannot be empty");
+            return false;
+        } else if (!val.matches(emailPattern)) {
+            editText_password.setError("Invalid email address");
+            return false;
+        } else {
+            editText_password.setError(null);
             return true;
         }
     }
