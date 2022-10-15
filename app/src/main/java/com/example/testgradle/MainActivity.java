@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private ImageView chat_background, imageView_facebook, imageView_google, imageView_linkdin, imageView_twitter;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         initViews();
         onclick();
+
     }
 
     private void initViews() {
@@ -78,6 +80,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if (view == editText_socialSignUp) {
 
+        }
+    }
+
+    private boolean validateName() {
+        String val = editText_email.getText().toString().trim();
+        if (val.isEmpty()) {
+            editText_email.setError("Field cannot empty");
+            return false;
+        } else {
+            editText_email.setError(null);
+            return true;
         }
     }
 }
