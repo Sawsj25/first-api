@@ -8,5 +8,10 @@
     <string name="editText_socialsignup">Social signUp</string>
     <string name="checkBox_rememberme">Remember Me</string>
     <string name="textView_addnewuser">New User? SignUp</string>
+    <string name="editText_username">Username</string>
+    <string name="editText_password_register">Password</string>
+    <string name="editText_password_reenter">ReEnter Password</string>
+    <string name="button_register">Register</string>
+    <string name="textView_have_account">Already have Account ?</string>
 
 </resources>

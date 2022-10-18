@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -172,6 +173,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textView_addNewUser = findViewById(R.id.textView_addnewuser);
         button_signIn = findViewById(R.id.button_signIn);
 
+
+
+//        on click new activity why not work
+        button_signIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,MvpActivity.class);
+                startActivity(intent);
+            }
+        });
+//        why ?
+
         sharedPreferences = getSharedPreferences(MainActivity.TAG, MODE_PRIVATE);
         String email = spref.getSharedPreferences(this).getString(spref.EMAIL, "");
         editText_email.setText(email);
@@ -181,7 +194,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void onclick() {
-        button_signIn.setOnClickListener(this);
         textView_forgetPassword.setOnClickListener(this);
         editText_socialSignUp.setOnClickListener(this);
     }
@@ -244,6 +256,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return true;
         }
     }
-
 }
 
