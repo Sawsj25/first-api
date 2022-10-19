@@ -1,9 +1,16 @@
 package com.example.testgradle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 
 import java.util.ArrayList;
 
@@ -18,5 +25,41 @@ public class ListContactActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_contact);
         recycler_view = findViewById(R.id.recycler_view);
+
+        checkPermission();
+    }
+    private void checkPermission(){
+        if (ContextCompat.checkSelfPermission(ListContactActivity.this, Manifest.permission.READ_CONTACTS)
+        != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(ListContactActivity.this,new String[]{Manifest.permission.READ_CONTACTS},100);
+        }else{
+            getContactList();
+        }
+    }
+
+    private void getContactList() {
+        Uri uri = ContactsContract.Contacts.CONTENT_URI;
+        String sort = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME+"ASC";
+
+        Cursor cursor = getContentResolver().query(uri,null,null,null,sort);
+
+        if (cursor.getCount()> 0){
+            while (cursor.moveToNext()){
+                String id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID
+                ));
+                String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME
+                ));
+                Uri uriphone = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+
+                String selection = ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " =?";
+
+                Cursor phoneCursor = getContentResolver().query(
+                        uriphone, null , selection ,new String[]{id},null
+                );
+                if (phoneCursor.moveToNext()){
+                    String number = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                }
+            }
+        }
     }
 }

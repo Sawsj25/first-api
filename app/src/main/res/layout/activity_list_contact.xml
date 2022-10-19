@@ -27,11 +27,12 @@
         android:layout_marginStart="8dp"
         tools:ignore="MissingConstraints" />
     <TextView
+        android:id="@+id/textView_Name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor=""
+        android:textColor="@color/black"
         android:paddingTop="9dp"
         android:paddingBottom="8dp"
         tools:ignore="MissingConstraints" />
