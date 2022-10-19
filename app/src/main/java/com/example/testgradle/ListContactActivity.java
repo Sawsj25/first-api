@@ -11,6 +11,7 @@ public class ListContactActivity extends AppCompatActivity {
 
     RecyclerView recycler_view;
     ArrayList<ContactModel>arrayList = new ArrayList<ContactModel>();
+    MainAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
