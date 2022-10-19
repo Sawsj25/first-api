@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -36,6 +37,7 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
         btnDatePicker.setOnClickListener((View.OnClickListener) this);
         btnTimePicker.setOnClickListener((View.OnClickListener) this);
         btn_send.setOnClickListener((View.OnClickListener)this);
+        imageView_contact.setOnClickListener((View.OnClickListener)this);
     }
 
     public void onClick(View view) {
@@ -44,7 +46,6 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
             mYear = c.get(Calendar.YEAR);
             mMonth = c.get(Calendar.MONTH);
             mDay = c.get(Calendar.DAY_OF_MONTH);
-
             DatePickerDialog dataPickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
