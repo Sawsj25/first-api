@@ -1,7 +1,5 @@
 package com.example.testgradle;
 
-import android.app.Activity;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
-
     AppCompatActivity  activity;
     ArrayList<ContactModel> arrayList;
 
@@ -35,8 +32,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ContactModel model = arrayList.get(position);
 
-        holder.textView_name.setText(model.getName());
-        holder.textView_number.setText(model.getNumber());
+        holder.textviewName.setText(model.getName());
+        holder.textviewNumber.setText(model.getNumber());
     }
 
     @Override
@@ -45,12 +42,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView textView_name , textView_number;
+        TextView textviewName, textviewNumber;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            textView_name = itemView.findViewById(R.id.textView_Name);
-            textView_name = itemView.findViewById(R.id. textView_number);
+            textviewName = itemView.findViewById(R.id.textView_Name);
+            textviewNumber = itemView.findViewById(R.id. textView_number);
         }
     }
 }

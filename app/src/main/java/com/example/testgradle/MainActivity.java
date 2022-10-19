@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
             }
         });
-//        why ?
+//
 
         sharedPreferences = getSharedPreferences(MainActivity.TAG, MODE_PRIVATE);
         String email = spref.getSharedPreferences(this).getString(spref.EMAIL, "");

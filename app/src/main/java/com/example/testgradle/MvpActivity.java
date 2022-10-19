@@ -33,12 +33,18 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
         txtDate = findViewById(R.id.in_date);
         txtTime = findViewById(R.id.in_time);
         imageView_contact = findViewById(R.id.imageView_contact);
-
         btnDatePicker.setOnClickListener((View.OnClickListener) this);
         btnTimePicker.setOnClickListener((View.OnClickListener) this);
         btn_send.setOnClickListener((View.OnClickListener)this);
-        imageView_contact.setOnClickListener((View.OnClickListener)this);
+        imageView_contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent contact=new Intent(MvpActivity.this,ListContactActivity.class);
+                startActivity(contact);
+            }
+        });
     }
+
 
     public void onClick(View view) {
         if (view == btnDatePicker) {
@@ -68,6 +74,5 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
             timePickerDialog.show();
         }
     }
-
 }
 
