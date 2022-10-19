@@ -1,8 +1,10 @@
 package com.example.testgradle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
@@ -58,8 +60,29 @@ public class ListContactActivity extends AppCompatActivity {
                 );
                 if (phoneCursor.moveToNext()){
                     String number = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+
+                    ContactModel model = new ContactModel();
+
+                    model.setName(name);
+
+                    model.setNumber(number);
+
+                    arrayList.add(model);
+
+                    phoneCursor.close();
                 }
             }
+            cursor.close();
         }
+        recycler_view.setLayoutManager((new LinearLayoutManager(this)));
+
+        adapter = new MainAdapter(this,arrayList);
+
+        recycler_view.setAdapter(adapter);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }
