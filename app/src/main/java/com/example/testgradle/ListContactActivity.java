@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class ListContactActivity extends AppCompatActivity  {
+public class ListContactActivity extends AppCompatActivity implements OnAdapterItemClickListener {
 
     RecyclerView recycler_view;
     ArrayList<ContactModel> arrayList = new ArrayList<ContactModel>();
@@ -79,7 +79,7 @@ public class ListContactActivity extends AppCompatActivity  {
         }
         recycler_view.setLayoutManager((new LinearLayoutManager(this)));
 
-        adapter = new MainAdapter(this, arrayList);
+        adapter = new MainAdapter(this, arrayList , this);
 
         recycler_view.setAdapter(adapter);
     }
@@ -95,5 +95,15 @@ public class ListContactActivity extends AppCompatActivity  {
             Toast.makeText(ListContactActivity.this, "Permission Denied .", Toast.LENGTH_SHORT).show();
             checkPermission();
         }
+    }
+
+    @Override
+    public void onAdapterItemClickListener(ContactModel contact) {
+        Toast.makeText(this, contact.getName(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
     }
 }

@@ -14,10 +14,12 @@ import java.util.ArrayList;
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     AppCompatActivity  activity;
     ArrayList<ContactModel> arrayList;
+    OnAdapterItemClickListener callback;
 
-    public MainAdapter (AppCompatActivity activity,ArrayList<ContactModel> arrayList){
+    public MainAdapter(AppCompatActivity activity, ArrayList<ContactModel> arrayList, OnAdapterItemClickListener callback){
         this.activity = (AppCompatActivity) activity;
         this.arrayList = arrayList;
+        this.callback = callback;
         notifyDataSetChanged();
     }
 
@@ -27,21 +29,25 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_contact,parent,false);
         return new ViewHolder(view);
     }
-
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MainAdapter.ViewHolder holder, int position) {
         ContactModel model = arrayList.get(position);
 
         holder.textviewName.setText(model.getName());
         holder.textviewNumber.setText(model.getNumber());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callback.onAdapterItemClickListener(model);
+            }
+        });
     }
-
     @Override
     public int getItemCount() {
         return arrayList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textviewName, textviewNumber;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

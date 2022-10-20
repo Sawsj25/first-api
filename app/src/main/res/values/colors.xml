@@ -11,4 +11,6 @@
     <color name="colorWhite">#F1F1F1</color>
     <color name="colorStartGradient">#15E3D8</color>
     <color name="colorEndGradient">#6675E7</color>
+    <color name="customViewColor">#028478</color>
+    <color name="dialogColor">#c2b9b2</color>
 </resources>
