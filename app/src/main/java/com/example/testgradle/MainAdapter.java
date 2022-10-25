@@ -6,18 +6,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
-    AppCompatActivity  activity;
     ArrayList<ContactModel> arrayList;
     OnAdapterItemClickListener callback;
 
-    public MainAdapter(AppCompatActivity activity, ArrayList<ContactModel> arrayList, OnAdapterItemClickListener callback){
-        this.activity = (AppCompatActivity) activity;
+    public MainAdapter(ArrayList<ContactModel> arrayList, OnAdapterItemClickListener callback){
         this.arrayList = arrayList;
         this.callback = callback;
         notifyDataSetChanged();

@@ -1,8 +1,8 @@
 package com.example.testgradle;
 
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -10,7 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class DialogActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class DialogActivity extends MvpActivity {
+    ArrayList<ContactModel> arrayList;
+    OnAdapterItemClickListener callback;
     @RequiresApi (api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,4 +33,12 @@ public class DialogActivity extends AppCompatActivity {
         });
     }
 
-}
+    public DialogActivity(ArrayList<ContactModel> arrayList, OnAdapterItemClickListener callback){
+            this.arrayList = arrayList;
+            this.callback = callback;
+            notifyDataSetChanged();
+        }
+
+    private void notifyDataSetChanged() {
+    }
+    }

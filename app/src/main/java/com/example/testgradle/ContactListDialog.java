@@ -1,42 +1,72 @@
 package com.example.testgradle;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.view.KeyboardShortcutGroup;
+import android.view.Menu;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
+import java.util.List;
 
-public class ListContactActivity extends AppCompatActivity implements OnAdapterItemClickListener {
+public class ContactListDialog extends Dialog implements OnAdapterItemClickListener {
 
+    private OnAdapterItemClickListener callback;
+
+    public ContactListDialog(@NonNull Context context, OnAdapterItemClickListener callback) {
+        super(context);
+        this.callback = callback;
+    }
+
+    public ContactListDialog(@NonNull Context context) {
+        super(context);
+    }
+
+    public ContactListDialog(@NonNull Context context, int themeResId) {
+        super(context, themeResId);
+    }
+
+    public ContactListDialog(@NonNull Context context, RecyclerView recycler_view, ArrayList<ContactModel> arrayList) {
+        super(context);
+        this.recycler_view = recycler_view;
+        this.arrayList = arrayList;
+
+    }
+
+    protected ContactListDialog(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
+        super(context, cancelable, cancelListener);
+    }
     RecyclerView recycler_view;
     ArrayList<ContactModel> arrayList = new ArrayList<ContactModel>();
     MainAdapter adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_contact);
         recycler_view = findViewById(R.id.recycler_view);
-
         checkPermission();
+
     }
 
     private void checkPermission() {
-        if (ContextCompat.checkSelfPermission(ListContactActivity.this, Manifest.permission.READ_CONTACTS)
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_CONTACTS)
                 != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(ListContactActivity.this, new String[]{Manifest.permission.READ_CONTACTS}, 100);
+            ActivityCompat.requestPermissions((Activity) getContext(), new String[]{Manifest.permission.READ_CONTACTS}, 100);
         } else {
             getContactList();
         }
@@ -46,7 +76,7 @@ public class ListContactActivity extends AppCompatActivity implements OnAdapterI
         Uri uri = ContactsContract.Contacts.CONTENT_URI;
         String sort = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC";
 
-        Cursor cursor = getContentResolver().query(uri, null, null, null, sort);
+        Cursor cursor = getContext().getContentResolver().query(uri, null, null, null, sort);
 
         if (cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
@@ -58,7 +88,7 @@ public class ListContactActivity extends AppCompatActivity implements OnAdapterI
 
                 String selection = ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " =?";
 
-                Cursor phoneCursor = getContentResolver().query(
+                Cursor phoneCursor = getContext().getContentResolver().query(
                         uriphone, null, selection, new String[]{id}, null
                 );
                 if (phoneCursor.moveToNext()) {
@@ -77,29 +107,19 @@ public class ListContactActivity extends AppCompatActivity implements OnAdapterI
             }
             cursor.close();
         }
-        recycler_view.setLayoutManager((new LinearLayoutManager(this)));
+        recycler_view.setLayoutManager((new LinearLayoutManager(getContext())));
 
         adapter = new MainAdapter( arrayList , this);
 
         recycler_view.setAdapter(adapter);
     }
+    public void onAdapterItemClickListener(ContactModel contact) {
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (requestCode == 100 && grantResults.length > 0 && grantResults[0]
-                == PackageManager.PERMISSION_GRANTED) {
-            getContactList();
-        } else {
-            Toast.makeText(ListContactActivity.this, "Permission Denied .", Toast.LENGTH_SHORT).show();
-            checkPermission();
-        }
     }
 
     @Override
-    public void onAdapterItemClickListener(ContactModel contact) {
-        Toast.makeText(this, contact.getName(), Toast.LENGTH_SHORT).show();
+    public void onProvideKeyboardShortcuts(List<KeyboardShortcutGroup> data, @Nullable Menu menu, int deviceId) {
+        super.onProvideKeyboardShortcuts(data, menu, deviceId);
     }
 
     @Override
@@ -107,3 +127,5 @@ public class ListContactActivity extends AppCompatActivity implements OnAdapterI
         super.onPointerCaptureChanged(hasCapture);
     }
 }
+
+

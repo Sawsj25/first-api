@@ -1,7 +1,7 @@
 package com.example.testgradle;
 
 public class ContactModel {
-    String name,number;
+    String name, number;
 
     public String getName() {
         return name;

@@ -13,4 +13,7 @@
     <color name="colorEndGradient">#6675E7</color>
     <color name="customViewColor">#028478</color>
     <color name="dialogColor">#c2b9b2</color>
+    <color name="sendColor">#A3EFE5</color>
+    <color name="contactimage">#FF0000</color>
+    <color name="background">#D3D3D3</color>
 </resources>

@@ -45,14 +45,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         validateEmail();
         validatePassword();
 
-        /**
-         GET List Resources
-         **/
+
         Call<MultipleResource> call = apiInterface.doGetListResources();
         call.enqueue(new Callback<MultipleResource>() {
             @Override
             public void onResponse(Call<MultipleResource> call, Response<MultipleResource> response) {
-
 
                 Log.d("TAG", response.code() + "");
 
@@ -80,9 +77,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        /**
-         Create new user
-         **/
         User user = new User("morpheus", "leader");
         Call<User> call1 = apiInterface.createUser(user);
         call1.enqueue(new Callback<User>() {
@@ -100,9 +94,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        /**
-         GET List Users
-         **/
         Call<UserList> call2 = apiInterface.doGetUserList("2");
         call2.enqueue(new Callback<UserList>() {
             @Override
@@ -129,9 +120,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
 
-        /**
-         POST name and job Url encoded.
-         **/
         Call<UserList> call3 = apiInterface.doCreateUserWithField("morpheus", "leader");
         call3.enqueue(new Callback<UserList>() {
             @Override
@@ -174,12 +162,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button_signIn = findViewById(R.id.button_signIn);
 
 
-
 //        on click new activity why not work
         button_signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,MvpActivity.class);
+                Intent intent = new Intent(MainActivity.this, MvpActivity.class);
                 startActivity(intent);
             }
         });
@@ -188,8 +175,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sharedPreferences = getSharedPreferences(MainActivity.TAG, MODE_PRIVATE);
         String email = spref.getSharedPreferences(this).getString(spref.EMAIL, "");
         editText_email.setText(email);
-        sharedPreferences =getSharedPreferences(MainActivity.TAG,MODE_PRIVATE);
-        String password = spref.getSharedPreferences(this).getString(spref.PASSWORD,"");
+        sharedPreferences = getSharedPreferences(MainActivity.TAG, MODE_PRIVATE);
+        String password = spref.getSharedPreferences(this).getString(spref.PASSWORD, "");
         editText_password.setText(password);
     }
 
@@ -216,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String email = editText_email.getText().toString().trim();
             spref.getSharedPreferences(this).edit().putString(spref.EMAIL, email).apply();
         }
-        if (view.getId()== editText_password.getId()) {
+        if (view.getId() == editText_password.getId()) {
             String password = editText_password.getText().toString().trim();
             spref.getSharedPreferences(this).edit().putString(spref.PASSWORD, password).apply();
 
@@ -232,9 +219,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (val.isEmpty()) {
             editText_email.setError("Field cannot empty");
             return false;
-        }else if(!val.matches(emailPattern)) {
-                editText_email.setError("Invalid email address");
-                return false;
+        } else if (!val.matches(emailPattern)) {
+            editText_email.setError("Invalid email address");
+            return false;
         } else {
             editText_email.setError(null);
             return true;

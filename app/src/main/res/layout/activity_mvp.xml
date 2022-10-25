@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorEndGradient"
+    android:background="@color/sendColor"
     tools:context=".MvpActivity">
 
     <EditText
@@ -13,29 +13,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:hint="To :"
-        android:inputType="number"
+         android:inputType="number"
         android:layout_margin="10dp"
-        android:padding="15dp"
+        android:padding="10dp"
         android:background="@drawable/customborder_to"
         tools:ignore="MissingConstraints" />
+
     <ImageView
         android:id="@+id/imageView_contact"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:padding="20dp"
-        android:layout_margin="12dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_margin="5dp"
+        app:layout_constraintBottom_toBottomOf="@id/ediText_to"
         android:background="@drawable/ic_baseline_person_add_24"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintRight_toRightOf="@id/ediText_to"
+        tools:ignore="MissingConstraints"
+        />
+
     <EditText
         android:id="@+id/editText_massage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:padding="15dp"
-        android:inputType="text"
+        android:padding="10dp"
+        android:lines="6"
+        android:minLines="6"
+        android:gravity="top"
         android:background="@drawable/customboreder_writetext"
         app:layout_constraintBottom_toTopOf="@id/btn_send"
         android:hint="Write Text"
@@ -46,33 +50,34 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_margin="10dp"
-        android:padding="15dp"
+        android:layout_margin="17dp"
+        android:padding="9dp"
         android:background="@drawable/customborder_showdate"
         app:layout_constraintTop_toBottomOf="@id/ediText_to"
         app:layout_constraintLeft_toLeftOf="parent"
         android:hint="Show Date"
         tools:ignore="MissingConstraints" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="15dp"
         android:padding="10dp"
+        android:background="@drawable/customborder_showdate_button"
         app:layout_constraintTop_toBottomOf="@id/ediText_to"
         app:layout_constraintLeft_toRightOf="@id/in_date"
         app:layout_constraintBottom_toTopOf="@id/btn_time"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="SELECT DATE"
+        android:text="DATE"
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/in_time"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:padding="15dp"
+        android:layout_margin="20dp"
+        android:padding="9dp"
         android:background="@drawable/customborder_showtime"
         app:layout_constraintTop_toBottomOf="@id/in_date"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -80,28 +85,31 @@
         android:hint="Show Time"
         tools:ignore="MissingConstraints" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="15dp"
         android:padding="10dp"
+        android:background="@drawable/customborder_showtime_button"
         app:layout_constraintTop_toBottomOf="@id/btn_date"
         app:layout_constraintLeft_toRightOf="@id/in_time"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="SELECT TIME"
+        android:text="TIME"
         tools:ignore="MissingConstraints" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_send"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_margin="70dp"
+        android:padding="2dp"
+        android:layout_margin="150dp"
         android:background="@drawable/customborder_send"
-        android:textColor="@color/black"
         android:hint="Send"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         tools:ignore="MissingConstraints" />
 
 
