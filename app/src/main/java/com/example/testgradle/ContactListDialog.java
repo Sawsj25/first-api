@@ -114,7 +114,8 @@ public class ContactListDialog extends Dialog implements OnAdapterItemClickListe
         recycler_view.setAdapter(adapter);
     }
     public void onAdapterItemClickListener(ContactModel contact) {
-
+callback.onAdapterItemClickListener(contact);
+dismiss();
     }
 
     @Override

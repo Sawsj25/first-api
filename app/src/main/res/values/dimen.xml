@@ -1,2 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <dimen name="textSize_customDialog">14sp</dimen>
+    <dimen name="textSize_recyclerview">12sp</dimen>
+    <dimen name="chat_background_height">250dp</dimen>
+    <dimen name="chat_background_margin">1dp</dimen>
+    <dimen name="card_View_margin">10dp</dimen>
+    <dimen name="cardCornerRadius">8dp</dimen>
+    <dimen name="cardElevation">10dp</dimen>
+    <dimen name="cardMaxElevation">12dp</dimen>
+    <dimen name="textView_login_padding">10dp</dimen>
+    <dimen name="textView_login_textSize">24sp</dimen>
+    <dimen name="editText_email_layout_margin">10dp</dimen>
+    <dimen name="editText_email_padding">15dp</dimen>
+    <dimen name="editText_email_textSize">14sp</dimen>
+    <dimen name="editText_password_padding">15dp</dimen>
+    <dimen name="editText_password_textSize">14sp</dimen>
+    <dimen name="textView_forget_password_padding">10dp</dimen>
+    <dimen name="textView_forget_password_textSize">15sp</dimen>
+    <dimen name="AppCompatButton_button_signIn_layout_width">200dp</dimen>
+    <dimen name="AppCompatButton_button_signIn_layout_margin">10dp</dimen>
+    <dimen name="AppCompatButton_button_signIn_layout_marginTop">8dp</dimen>
+    <dimen name="AppCompatButton_button_signIn_padding">10dp</dimen>
+    <dimen name="AppCompatButton_button_signIn_textSize">15sp</dimen>
+    <dimen name="CheckBox_layout_margin">10dp</dimen>
+    <dimen name="CheckBox_paddingLeft">10dp</dimen>
+    <dimen name="editText_social_signUp_textSize">15sp</dimen>
+    <dimen name="logo_social_layout_margin_Top">5dp</dimen>
+    <dimen name="imageView_facebook_layout_width">50dp</dimen>
+    <dimen name="imageView_facebook_layout_height">30dp</dimen>
+    <dimen name="imageView_google_layout_width">50dp</dimen>
+    <dimen name="imageView_google_layout_height">30dp</dimen>
+    <dimen name="imageView_twitter_layout_width">50dp</dimen>
+    <dimen name="imageView_twitter_layout_height">30dp</dimen>
+    <dimen name="textView_add_new_user_margin_Top">5dp</dimen>
+    <dimen name="imageView_linkdin_layout_width">50dp</dimen>
+    <dimen name="imageView_linkdin_layout_height">30dp</dimen>
+    <dimen name="textView_add_new_user_layout_marginTop">5dp</dimen>
+
+
+
+</resources>

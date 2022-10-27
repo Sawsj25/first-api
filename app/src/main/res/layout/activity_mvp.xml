@@ -22,12 +22,13 @@
 
     <ImageView
         android:id="@+id/imageView_contact"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="@id/ediText_to"
-        android:background="@drawable/ic_baseline_person_add_24"
         app:layout_constraintRight_toRightOf="@id/ediText_to"
+        android:background="@drawable/ic_baseline_person_add_24"
+
         tools:ignore="MissingConstraints"
         />
 

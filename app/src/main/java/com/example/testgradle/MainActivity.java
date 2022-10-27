@@ -157,8 +157,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editText_socialSignUp = findViewById(R.id.editText_socialsignUp);
         checkBox_remember = findViewById(R.id.checkBox_remember);
         textView_login = findViewById(R.id.textView_login);
-        textView_forgetPassword = findViewById(R.id.textView_forgetpassword);
-        textView_addNewUser = findViewById(R.id.textView_addnewuser);
+        textView_forgetPassword = findViewById(R.id.textView_forget_password);
+        textView_addNewUser = findViewById(R.id.textView_add_new_user);
         button_signIn = findViewById(R.id.button_signIn);
 
 

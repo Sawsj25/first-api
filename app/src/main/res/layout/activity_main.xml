@@ -14,9 +14,9 @@
         <ImageView
             android:id="@+id/chat_background"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="@dimen/chat_background_height"
             android:scaleType="centerCrop"
-            android:layout_margin="1dp"
+            android:layout_margin="@dimen/CheckBox_layout_margin"
             android:src="@drawable/wallbackground"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -27,33 +27,31 @@
             android:id="@+id/card_View"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/card_View_margin"
             app:cardBackgroundColor="@color/colorWhite"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="10dp"
-            app:cardMaxElevation="12dp"
+            app:cardCornerRadius="@dimen/cardCornerRadius"
+            app:cardElevation="@dimen/cardElevation"
+            app:cardMaxElevation="@dimen/cardMaxElevation"
             app:cardPreventCornerOverlap="true"
             app:cardUseCompatPadding="true"
             app:layout_constraintTop_toBottomOf="@id/chat_background"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            tools:ignore="MissingConstraints">
+            app:layout_constraintRight_toRightOf="parent">
 
             <LinearLayout
                 android:id="@+id/linear"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                tools:ignore="MissingConstraints">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
+                    android:padding="@dimen/textView_login_padding"
                     android:textColor="@color/black"
                     android:text="@string/textView_login"
-                    android:textSize="24sp"
+                    android:textSize="@dimen/textView_login_textSize"
 
                     />
 
@@ -61,14 +59,14 @@
                     android:id="@+id/editText_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_margin="@dimen/editText_email_layout_margin"
                     android:autofillHints="@string/editText_email"
                     android:background="@drawable/customborder_email"
                     android:hint="@string/editText_email"
                     android:inputType="textEmailAddress"
                     android:maxLength="100"
                     android:maxLines="1"
-                    android:padding="15dp"
+                    android:padding="@dimen/editText_email_padding"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -76,19 +74,19 @@
                     android:id="@+id/editText_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_margin="@dimen/editText_password_padding"
                     android:autofillHints="@string/editText_email"
                     android:background="@drawable/customborder_password"
                     android:hint="@string/editText_password"
                     android:inputType="textPassword"
                     android:maxLength="100"
                     android:maxLines="1"
-                    android:padding="15dp"
-                    android:textSize="14sp"
+                    android:padding="@dimen/editText_password_padding"
+                    android:textSize="@dimen/textView_forget_password_textSize"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView_forgetpassword"
+                    android:id="@+id/textView_forget_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="right"
@@ -117,17 +115,17 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_signIn"
-                android:layout_width="200dp"
+                android:layout_width="@dimen/AppCompatButton_button_signIn_layout_width"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_marginTop="8dp"
+                android:layout_margin="@dimen/AppCompatButton_button_signIn_layout_margin"
+                android:layout_marginTop="@dimen/AppCompatButton_button_signIn_layout_marginTop"
                 android:background="@drawable/customborder_sign_button"
                 android:gravity="center"
                 android:hint="@string/button_signin"
-                android:padding="10dp"
+                android:padding="@dimen/AppCompatButton_button_signIn_padding"
                 android:text="sign In "
                 android:textColor="@color/white"
-                android:textSize="15sp"
+                android:textSize="@dimen/AppCompatButton_button_signIn_textSize"
                 app:layout_constraintTop_toBottomOf="@id/card_View"
                 tools:ignore="MissingConstraints" />
 
@@ -137,10 +135,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/CheckBox_layout_margin"
                 android:gravity="center"
                 android:layoutDirection="ltr"
-                android:paddingLeft="10dp"
+                android:paddingLeft="@dimen/CheckBox_paddingLeft"
                 android:text="@string/checkBox_rememberme" />
 
         </LinearLayout>
@@ -153,7 +151,7 @@
             android:gravity="center"
             android:hint="@string/editText_socialsignup"
             app:layout_constraintTop_toBottomOf="@id/login_horizontal"
-            android:textSize="15sp"
+            android:textSize="@dimen/editText_social_signUp_textSize"
             android:textColor="@color/black"
             tools:ignore="MissingConstraints" />
 
@@ -163,13 +161,13 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/editText_socialsignUp"
             android:gravity="center"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/logo_social_layout_margin_Top"
             tools:ignore="MissingConstraints">
 
             <ImageView
                 android:id="@+id/imageView_facebook"
-                android:layout_width="50dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/imageView_facebook_layout_width"
+                android:layout_height="@dimen/imageView_facebook_layout_height"
                 android:src="@drawable/facebooklogocircle"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -179,8 +177,8 @@
 
             <ImageView
                 android:id="@+id/imageView_google"
-                android:layout_width="50dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/imageView_google_layout_width"
+                android:layout_height="@dimen/imageView_google_layout_height"
                 android:src="@drawable/googlevectorcirclelogo"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/imageView_facebook"
@@ -197,20 +195,17 @@
 
             <ImageView
                 android:id="@+id/imageView_twitter"
-                android:layout_width="50dp"
-                android:layout_height="30dp"
-                android:src="@drawable/twitter"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="81dp"
-                tools:layout_editor_absoluteY="434dp" />
+                android:layout_width="@dimen/imageView_linkdin_layout_width"
+                android:layout_height="@dimen/imageView_twitter_layout_height"
+                android:src="@drawable/twitter"/>
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView_addnewuser"
+            android:id="@+id/textView_add_new_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/textView_add_new_user_layout_marginTop"
             android:text="@string/textView_addnewuser"
             app:layout_constraintTop_toBottomOf="@id/logo_social"
             android:gravity="center"
