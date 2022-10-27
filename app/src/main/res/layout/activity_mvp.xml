@@ -46,6 +46,33 @@
         android:hint="Write Text"
         tools:ignore="MissingConstraints" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_scheduleJob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="scheduleJob"
+        android:text="schedule Job"
+        app:layout_constraintTop_toBottomOf="@id/in_time"
+        app:layout_constraintLeft_toLeftOf="@id/in_time"
+        app:layout_constraintRight_toRightOf="@id/in_time"
+        android:layout_margin="10dp"
+        android:background="@drawable/customborder_schedule_job"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_cancelJob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="cancelJob"
+        android:text="cancel job"
+        app:layout_constraintTop_toBottomOf="@id/btn_scheduleJob"
+        app:layout_constraintLeft_toLeftOf="@id/btn_scheduleJob"
+        app:layout_constraintRight_toRightOf="@id/btn_scheduleJob"
+        android:layout_margin="10dp"
+        android:background="@drawable/customborder_cancel_schedule"
+        android:textColor="@color/white"
+        tools:ignore="MissingConstraints" />
+
     <EditText
         android:id="@+id/in_date"
         android:layout_width="200dp"

@@ -1,5 +1,6 @@
 package com.example.testgradle;
 
+import androidx.annotation.LongDef;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -8,10 +9,14 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -40,6 +45,7 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
     private ImageView imageView_contact;
     public static final String Number = "contactname";
     public static final String Massage = "text";
+    public static final String TAG = "MvpActivity";
 
 
     @Override
@@ -180,5 +186,29 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
 
     }
 
+    public void scheduleJob(View v){
+        ComponentName componentName = new ComponentName(this,ExampleJobService.class);
+        JobInfo info = new JobInfo.Builder(123,componentName)
+                .setRequiresCharging(true)
+                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED)
+                .setPersisted(true)
+                .setPeriodic(15 * 60 * 1000).build();
+
+        JobScheduler scheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
+       int resultCode= scheduler.schedule(info);
+       if (resultCode==JobScheduler.RESULT_SUCCESS){
+           Log.d(TAG,"Job scheduled");
+       }else{
+           Log.d(TAG,"Job scheduling failed");
+       }
+    }
+    public void cancelJob(View v){
+        JobScheduler scheduler =(JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
+        scheduler.cancel(123);
+        Log.d(TAG,"Job cancelled");
+
+    }
+
 }
+
 
