@@ -54,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@id/in_time"
         app:layout_constraintLeft_toLeftOf="@id/in_time"
         app:layout_constraintRight_toRightOf="@id/in_time"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         android:background="@drawable/customborder_schedule_job"
         tools:ignore="MissingConstraints" />
 
