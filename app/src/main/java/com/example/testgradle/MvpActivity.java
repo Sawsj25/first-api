@@ -36,7 +36,6 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
     private Button btnDatePicker;
     private Button btnTimePicker;
     private AppCompatButton btn_scheduleJob;
-    private AppCompatButton btn_cancelJob;
     private Button btn_send;
     private EditText txtDate;
     private EditText txtTime;
@@ -76,7 +75,6 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
         txtDate = findViewById(R.id.in_date);
         txtTime = findViewById(R.id.in_time);
         btn_scheduleJob = findViewById(R.id.btn_scheduleJob);
-        btn_cancelJob = findViewById(R.id.btn_cancelJob);
         imageView_contact = findViewById(R.id.imageView_contact);
         btnDatePicker.setOnClickListener((View.OnClickListener) this);
         btnTimePicker.setOnClickListener((View.OnClickListener) this);
