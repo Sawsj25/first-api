@@ -15,7 +15,8 @@ import java.util.ArrayList;
 public class DialogActivity extends MvpActivity {
     ArrayList<ContactModel> arrayList;
     OnAdapterItemClickListener callback;
-    @RequiresApi (api = Build.VERSION_CODES.JELLY_BEAN)
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +34,12 @@ public class DialogActivity extends MvpActivity {
         });
     }
 
-    public DialogActivity(ArrayList<ContactModel> arrayList, OnAdapterItemClickListener callback){
-            this.arrayList = arrayList;
-            this.callback = callback;
-            notifyDataSetChanged();
-        }
+    public DialogActivity(ArrayList<ContactModel> arrayList, OnAdapterItemClickListener callback) {
+        this.arrayList = arrayList;
+        this.callback = callback;
+        notifyDataSetChanged();
+    }
 
     private void notifyDataSetChanged() {
     }
-    }
+}

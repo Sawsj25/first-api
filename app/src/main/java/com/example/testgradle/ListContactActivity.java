@@ -79,7 +79,7 @@ public class ListContactActivity extends AppCompatActivity implements OnAdapterI
         }
         recycler_view.setLayoutManager((new LinearLayoutManager(this)));
 
-        adapter = new MainAdapter( arrayList , this);
+        adapter = new MainAdapter(arrayList, this);
 
         recycler_view.setAdapter(adapter);
     }

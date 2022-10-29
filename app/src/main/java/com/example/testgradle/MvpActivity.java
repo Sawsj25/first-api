@@ -3,6 +3,7 @@ package com.example.testgradle;
 import androidx.annotation.LongDef;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -29,11 +30,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 
-public class MvpActivity extends AppCompatActivity implements View.OnClickListener, OnAdapterItemClickListener  {
+public class MvpActivity extends AppCompatActivity implements View.OnClickListener, OnAdapterItemClickListener {
     private EditText ediText_to;
     private EditText editText_massage;
     private Button btnDatePicker;
     private Button btnTimePicker;
+    private AppCompatButton btn_scheduleJob;
+    private AppCompatButton btn_cancelJob;
     private Button btn_send;
     private EditText txtDate;
     private EditText txtTime;
@@ -53,16 +56,16 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mvp);
         if (ContextCompat.checkSelfPermission(MvpActivity.this,
-                Manifest.permission.SEND_SMS) !=PackageManager.PERMISSION_GRANTED) {
+                Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(MvpActivity.this,
                     Manifest.permission.SEND_SMS)) {
                 ActivityCompat.requestPermissions(MvpActivity.this,
                         new String[]{Manifest.permission.SEND_SMS}, 1);
-            }else{
+            } else {
                 ActivityCompat.requestPermissions(MvpActivity.this,
-                        new String[]{Manifest.permission.SEND_SMS},1);
+                        new String[]{Manifest.permission.SEND_SMS}, 1);
             }
-        }else{
+        } else {
 //            nothing
         }
         ediText_to = findViewById(R.id.ediText_to);
@@ -72,6 +75,8 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
         btn_send = findViewById(R.id.btn_send);
         txtDate = findViewById(R.id.in_date);
         txtTime = findViewById(R.id.in_time);
+        btn_scheduleJob = findViewById(R.id.btn_scheduleJob);
+        btn_cancelJob = findViewById(R.id.btn_cancelJob);
         imageView_contact = findViewById(R.id.imageView_contact);
         btnDatePicker.setOnClickListener((View.OnClickListener) this);
         btnTimePicker.setOnClickListener((View.OnClickListener) this);
@@ -92,13 +97,13 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Number =ediText_to.getText().toString();
+                String Number = ediText_to.getText().toString();
                 String Massage = editText_massage.getText().toString();
                 try {
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(Number,null,Massage,null,null);
+                    smsManager.sendTextMessage(Number, null, Massage, null, null);
                     Toast.makeText(MvpActivity.this, "Sent", Toast.LENGTH_SHORT).show();
-                }catch (Exception e){
+                } catch (Exception e) {
                     Toast.makeText(MvpActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -148,14 +153,14 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
     }
 
     @Override
-    public void onAdapterItemClickListener(ContactModel contact)  {
+    public void onAdapterItemClickListener(ContactModel contact) {
         Toast.makeText(this, "Your Contact Is Pick", Toast.LENGTH_SHORT).show();
         ediText_to.setText(contact.getNumber());
     }
 
     private boolean validateNumber() {
         String validate = ediText_to.getText().toString().trim();
-        String namePattern =  "@\"^09[0|1|2|3][0-9]{8}$\";";
+        String namePattern = "@\"^09[0|1|2|3][0-9]{8}$\";";
 
         if (validate.isEmpty()) {
             ediText_to.setError("Field cannot be empty");
@@ -168,7 +173,8 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
             return true;
         }
     }
-    private boolean validateText(){
+
+    private boolean validateText() {
 
         String validate = editText_massage.getText().toString().trim();
         String textPattern = "";
@@ -185,30 +191,6 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
 
 
     }
-
-    public void scheduleJob(View v){
-        ComponentName componentName = new ComponentName(this,ExampleJobService.class);
-        JobInfo info = new JobInfo.Builder(123,componentName)
-                .setRequiresCharging(true)
-                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED)
-                .setPersisted(true)
-                .setPeriodic(15 * 60 * 1000).build();
-
-        JobScheduler scheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
-       int resultCode= scheduler.schedule(info);
-       if (resultCode==JobScheduler.RESULT_SUCCESS){
-           Log.d(TAG,"Job scheduled");
-       }else{
-           Log.d(TAG,"Job scheduling failed");
-       }
-    }
-    public void cancelJob(View v){
-        JobScheduler scheduler =(JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
-        scheduler.cancel(123);
-        Log.d(TAG,"Job cancelled");
-
-    }
-
 }
 
 

@@ -51,9 +51,11 @@ public class ContactListDialog extends Dialog implements OnAdapterItemClickListe
     protected ContactListDialog(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
         super(context, cancelable, cancelListener);
     }
+
     RecyclerView recycler_view;
     ArrayList<ContactModel> arrayList = new ArrayList<ContactModel>();
     MainAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,13 +111,14 @@ public class ContactListDialog extends Dialog implements OnAdapterItemClickListe
         }
         recycler_view.setLayoutManager((new LinearLayoutManager(getContext())));
 
-        adapter = new MainAdapter( arrayList , this);
+        adapter = new MainAdapter(arrayList, this);
 
         recycler_view.setAdapter(adapter);
     }
+
     public void onAdapterItemClickListener(ContactModel contact) {
-callback.onAdapterItemClickListener(contact);
-dismiss();
+        callback.onAdapterItemClickListener(contact);
+        dismiss();
     }
 
     @Override
