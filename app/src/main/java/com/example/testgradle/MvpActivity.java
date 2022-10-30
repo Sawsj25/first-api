@@ -93,7 +93,7 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
             TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                 @Override
                 public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
-                    SaveTimeEditText.setText(hourOfDay + ":" + minute);
+                    saveTimeEditText.setText(hourOfDay + ":" + minute);
                 }
             }, mHour, mMinute, false);
             timePickerDialog.show();
@@ -146,7 +146,7 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
         sendButton = findViewById(R.id.btn_send);
         saveDateEditText = findViewById(R.id.in_date);
         saveTimeEditText = findViewById(R.id.in_time);
-         contactImageView= findViewById(R.id.imageView_contact);
+        contactImageView= findViewById(R.id.imageView_contact);
         datePickerButton.setOnClickListener((View.OnClickListener) this);
         timePickerButton.setOnClickListener((View.OnClickListener) this);
         sendButton.setOnClickListener((View.OnClickListener) this);
@@ -167,7 +167,7 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
         }
     }
     private void onClicks(){
-        contact_imageView.setOnClickListener(new View.OnClickListener() {
+        contactImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -180,12 +180,12 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
 
             }
         });
-        btn_send.setOnClickListener(new View.OnClickListener() {
+        sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mworkmanager.enqueue(mRequest);
+                showNotificationWorkManager.enqueue(showWorkManagerRequest);
                 String Number = phoneNumberEditText.getText().toString();
-                String Massage = writeMassageEdittext.getText().toString();
+                String Massage = writeMassageEditText.getText().toString();
                 try {
                     SmsManager smsManager = SmsManager.getDefault();
                     smsManager.sendTextMessage(Number, null, Massage, null, null);
