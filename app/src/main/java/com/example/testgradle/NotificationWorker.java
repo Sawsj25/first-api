@@ -23,7 +23,7 @@ public class NotificationWorker extends Worker {
     @Override
     public Result doWork() {
         Data taskData = getInputData();
-        String taskDataString = taskData.getString(MvpActivity.Massage);
+        String taskDataString = taskData.getString(MvpActivity.MASSAGE);
         showNotification("WorkManager",taskDataString !=null ? taskDataString :"Message has been Sent");
         Data outputData = new Data.Builder().putString(WORK_RESULT,"Job Finished").build();
         return Result.success(outputData);

@@ -41,9 +41,17 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
     private int mDay;
     private int mHour;
     private int mMinute;
+
+    class MyDate {
+        int mYear;
+        int mMonth;
+        int mDay;
+        int mHour;
+        int mMinute;
+    }
     private ImageView contactImageView;
-    public static final String Number = "contactName";
-    public static final String Massage = "text";
+    public static final String NUMBER = "contactName";
+    public static final String MASSAGE = "text";
     public static final String TAG = "MvpActivity";
     public static  final String MESSAGE_STATUS = "messageStatus";
     final WorkManager showNotificationWorkManager = WorkManager.getInstance();
@@ -54,10 +62,21 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mvp);
         findViews();
-        checkPermission();
         onClicks();
-        validateNumber();
-        validateText();
+    }
+    private void findViews(){
+
+        phoneNumberEditText = findViewById(R.id.phoneNumberEditText);
+        writeMassageEditText = findViewById(R.id.writeMassageEditText);
+        datePickerButton = findViewById(R.id.datePickerButton);
+        timePickerButton = findViewById(R.id.timePickerButton);
+        sendButton = findViewById(R.id.btn_send);
+        saveDateEditText = findViewById(R.id.saveDateEditText);
+        saveTimeEditText = findViewById(R.id.saveTimeEditText);
+        contactImageView= findViewById(R.id.contactImageView);
+        datePickerButton.setOnClickListener((View.OnClickListener) this);
+        timePickerButton.setOnClickListener((View.OnClickListener) this);
+        sendButton.setOnClickListener((View.OnClickListener) this);
     }
 
     @Override
@@ -136,20 +155,6 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
             writeMassageEditText.setError(null);
             return true;
         }
-
-    }
-    private void findViews(){
-        phoneNumberEditText = findViewById(R.id.phone_Number_editText);
-        writeMassageEditText = findViewById(R.id.write_Massage_editText);
-        datePickerButton = findViewById(R.id.btn_date);
-        timePickerButton = findViewById(R.id.btn_time);
-        sendButton = findViewById(R.id.btn_send);
-        saveDateEditText = findViewById(R.id.in_date);
-        saveTimeEditText = findViewById(R.id.in_time);
-        contactImageView= findViewById(R.id.imageView_contact);
-        datePickerButton.setOnClickListener((View.OnClickListener) this);
-        timePickerButton.setOnClickListener((View.OnClickListener) this);
-        sendButton.setOnClickListener((View.OnClickListener) this);
     }
     private void checkPermission(){
         if (ContextCompat.checkSelfPermission(MvpActivity.this,
@@ -180,6 +185,19 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
 
             }
         });
+        contactImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (ContextCompat.checkSelfPermission(MvpActivity.this, android.Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
+                    ContactListDialog dialog = new ContactListDialog(MvpActivity.this, MvpActivity.this);
+                    dialog.show();
+                } else {
+                    requestPermissions(new String[]{android.Manifest.permission.READ_CONTACTS}, 112);
+                }
+
+            }
+        });
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -195,6 +213,24 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
                 }
             }
         });
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showNotificationWorkManager.enqueue(showWorkManagerRequest);
+                String Number = phoneNumberEditText.getText().toString();
+                String Massage = writeMassageEditText.getText().toString();
+                try {
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(Number, null, Massage, null, null);
+                    Toast.makeText(MvpActivity.this, "Sent", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(MvpActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        validateNumber();
+        validateText();
+        checkPermission();
     }
 }
 
