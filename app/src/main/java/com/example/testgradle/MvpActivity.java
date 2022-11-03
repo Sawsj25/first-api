@@ -2,6 +2,7 @@ package com.example.testgradle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
@@ -33,7 +34,8 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
     private EditText writeMassageEditText;
     private Button datePickerButton;
     private Button timePickerButton;
-    private Button sendButton;
+    private AppCompatButton sendButton;
+    private AppCompatButton infoButton;
     private EditText saveDateEditText;
     private EditText saveTimeEditText;
     private int mYear;
@@ -71,6 +73,7 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
         datePickerButton = findViewById(R.id.datePickerButton);
         timePickerButton = findViewById(R.id.timePickerButton);
         sendButton = findViewById(R.id.btn_send);
+        infoButton= findViewById(R.id.infoButton);
         saveDateEditText = findViewById(R.id.saveDateEditText);
         saveTimeEditText = findViewById(R.id.saveTimeEditText);
         contactImageView= findViewById(R.id.contactImageView);
@@ -231,6 +234,13 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
         validateNumber();
         validateText();
         checkPermission();
+        infoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MvpActivity.this, InfoDeliver.class);
+                startActivity(intent);
+            }
+        });
     }
 }
 
