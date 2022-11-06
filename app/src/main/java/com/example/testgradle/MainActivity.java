@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String EMAIL = "email";
     public static final String PASSWORD = "password";
     private TextView responseText;
-    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +41,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         onclick();
         validateEmail();
         validatePassword();
-
         {
 
-
         }
-
     }
-
 
     private void initViews() {
         chat_background = findViewById(R.id.chat_background);
@@ -77,11 +72,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 //
 
-        sharedPreferences = getSharedPreferences(MainActivity.TAG, MODE_PRIVATE);
-        String email = spref.getSharedPreferences(this).getString(spref.EMAIL, "");
+        String email = Spref.getSharedPreferences(this).getString(Spref.EMAIL, "");
         editText_email.setText(email);
-        sharedPreferences = getSharedPreferences(MainActivity.TAG, MODE_PRIVATE);
-        String password = spref.getSharedPreferences(this).getString(spref.PASSWORD, "");
+        String password = Spref.getSharedPreferences(this).getString(Spref.PASSWORD, "");
         editText_password.setText(password);
     }
 
@@ -90,27 +83,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editText_socialSignUp.setOnClickListener(this);
     }
 
-    public static class spref {
-        public static final String EMAIL = "email";
-        public static final String PASSWORD = "password";
-        static SharedPreferences sharedPreferences;
-
-        public static SharedPreferences getSharedPreferences(Context context) {
-            if (sharedPreferences == null)
-                sharedPreferences = context.getSharedPreferences(MainActivity.TAG, Context.MODE_PRIVATE);
-            return sharedPreferences;
-        }
-    }
-
     @Override
     public void onClick(View view) {
         if (view.getId() == button_signIn.getId()) {
             String email = editText_email.getText().toString().trim();
-            spref.getSharedPreferences(this).edit().putString(spref.EMAIL, email).apply();
+            Spref.getSharedPreferences(this).edit().putString(Spref.EMAIL, email).apply();
         }
         if (view.getId() == editText_password.getId()) {
             String password = editText_password.getText().toString().trim();
-            spref.getSharedPreferences(this).edit().putString(spref.PASSWORD, password).apply();
+            Spref.getSharedPreferences(this).edit().putString(Spref.PASSWORD, password).apply();
 
         }
         if (view == editText_socialSignUp) {

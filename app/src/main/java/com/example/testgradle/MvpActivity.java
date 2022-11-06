@@ -6,12 +6,16 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
+import androidx.work.Constraints;
+import androidx.work.Data;
+import androidx.work.NetworkType;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkInfo;
 import androidx.work.WorkManager;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -26,7 +30,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 
 public class MvpActivity extends AppCompatActivity implements View.OnClickListener, OnAdapterItemClickListener {
@@ -65,14 +72,20 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_mvp);
         findViews();
         onClicks();
+
+
+
     }
+
+
+
     private void findViews(){
 
         phoneNumberEditText = findViewById(R.id.phoneNumberEditText);
         writeMassageEditText = findViewById(R.id.writeMassageEditText);
         datePickerButton = findViewById(R.id.datePickerButton);
         timePickerButton = findViewById(R.id.timePickerButton);
-        sendButton = findViewById(R.id.btn_send);
+        sendButton = findViewById(R.id.sendButton);
         infoButton= findViewById(R.id.infoButton);
         saveDateEditText = findViewById(R.id.saveDateEditText);
         saveTimeEditText = findViewById(R.id.saveTimeEditText);
@@ -102,7 +115,7 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
             DatePickerDialog dataPickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                    saveDateEditText.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                    saveDateEditText.setText(year + "/" +  (monthOfYear + 1) + "/" + dayOfMonth);
                 }
             }, mYear, mMonth, mDay);
             dataPickerDialog.show();
@@ -115,7 +128,7 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
             TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                 @Override
                 public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
-                    saveTimeEditText.setText(hourOfDay + ":" + minute);
+                    saveTimeEditText.setText(hourOfDay + ":" + minute + ":00");
                 }
             }, mHour, mMinute, false);
             timePickerDialog.show();
@@ -226,6 +239,24 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
                     SmsManager smsManager = SmsManager.getDefault();
                     smsManager.sendTextMessage(Number, null, Massage, null, null);
                     Toast.makeText(MvpActivity.this, "Sent", Toast.LENGTH_SHORT).show();
+                    String myDate = saveDateEditText.getText() + " " + saveTimeEditText.getText();
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyy/MM/dd HH:mm:ss");
+                    Date date = simpleDateFormat.parse(myDate);
+                    long milis = date.getTime() - System.currentTimeMillis();
+//                    long minutes = TimeUnit.MILLISECONDS.toMinutes(milis - System.currentTimeMillis());
+
+                    Data data = new Data.Builder()
+                            .putInt("number",10)
+                            .build();
+                    Constraints constraints = new Constraints.Builder()
+                            .build();
+                    OneTimeWorkRequest downloadRequest = new OneTimeWorkRequest.Builder(Schedule.class)
+                            .setInputData(data)
+                            .setConstraints(constraints)
+                            .setInitialDelay(milis, TimeUnit.MILLISECONDS)
+                            .addTag("download")
+                            .build();
+                    WorkManager.getInstance(getApplicationContext()).enqueue(downloadRequest);
                 } catch (Exception e) {
                     Toast.makeText(MvpActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
                 }
