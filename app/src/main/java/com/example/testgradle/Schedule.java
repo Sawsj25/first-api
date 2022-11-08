@@ -13,9 +13,8 @@ import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
 public class Schedule extends Worker  {
-
-    public static final String MASSAGE = "Salam Emad Jan";
     private String number;
+    private String text;
     public Schedule(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
     }
@@ -25,8 +24,9 @@ public class Schedule extends Worker  {
     public Result doWork() {
         Data inputData = getInputData();
         String number = inputData.getString("number");
+        String text = inputData.getString("text");
         SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage((String) number, null, MASSAGE, null, null);
+        smsManager.sendTextMessage((String) number , null, text, null, null);
         Log.d(TAG,"doWork:" + number);
         return  Result.success();
     }
