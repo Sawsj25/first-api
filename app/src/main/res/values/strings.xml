@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">VolleyProject</string>
-    <string name="textView_login">Login</string>
+    <string name="textView_login">خوش آمدید .....</string>
     <string name="editText_email">Email</string>
     <string name="editText_password">Password</string>
     <string name="textView_forgetpassword">Forget Password?</string>

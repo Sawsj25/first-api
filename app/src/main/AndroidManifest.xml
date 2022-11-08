@@ -14,14 +14,14 @@
         android:fullBackupContent="@xml/backup_rules"
         android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Welcome to my App"
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TestGradle"
         tools:targetApi="31">
         <activity
-            android:name=".InfoDeliver"
+            android:name=".SmsUserList"
             android:exported="false" />
         <activity
             android:name=".DialogActivity"

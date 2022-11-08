@@ -23,6 +23,7 @@
         <entry key="..\:/Users/Sajjad/StudioProjects/first-api/app/src/main/res/drawable/customborder_showtime_button.xml" value="0.1455" />
         <entry key="..\:/Users/Sajjad/StudioProjects/first-api/app/src/main/res/drawable/customborder_sign_button.xml" value="0.1735" />
         <entry key="..\:/Users/Sajjad/StudioProjects/first-api/app/src/main/res/drawable/customborder_to.xml" value="0.1415" />
+        <entry key="..\:/Users/Sajjad/StudioProjects/first-api/app/src/main/res/drawable/custombordersearch.xml" value="0.132" />
         <entry key="..\:/Users/Sajjad/StudioProjects/first-api/app/src/main/res/drawable/customboreder_writetext.xml" value="0.134" />
         <entry key="..\:/Users/Sajjad/StudioProjects/first-api/app/src/main/res/drawable/garadiantmainbackground.xml" value="0.1615" />
         <entry key="..\:/Users/Sajjad/StudioProjects/first-api/app/src/main/res/drawable/ic_baseline_person_add_24.xml" value="0.134" />
@@ -36,8 +37,10 @@
         <entry key="..\:/Users/Sajjad/StudioProjects/first-api/app/src/main/res/layout/activity_list_info_search.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/Sajjad/StudioProjects/first-api/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/Sajjad/StudioProjects/first-api/app/src/main/res/layout/activity_mvp.xml" value="0.264" />
+        <entry key="..\:/Users/Sajjad/StudioProjects/first-api/app/src/main/res/layout/activity_sms_list.xml" value="0.264" />
         <entry key="..\:/Users/Sajjad/StudioProjects/first-api/app/src/main/res/layout/customview.xml" value="0.24547101449275363" />
         <entry key="..\:/Users/Sajjad/StudioProjects/first-api/app/src/main/res/layout/item_contact.xml" value="0.2" />
+        <entry key="..\:/Users/Sajjad/StudioProjects/first-api/app/src/main/res/layout/item_contact_deliver.xml" value="0.24895833333333334" />
       </map>
     </option>
   </component>

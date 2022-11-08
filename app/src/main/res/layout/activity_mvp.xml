@@ -146,7 +146,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:padding="10dp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:background="@drawable/borderinfo"
         app:layout_constraintTop_toBottomOf="@id/sendButton"
         app:layout_constraintLeft_toLeftOf="@id/sendButton"

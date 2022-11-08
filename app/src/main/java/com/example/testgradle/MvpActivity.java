@@ -5,17 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.Observer;
 import androidx.work.Constraints;
 import androidx.work.Data;
-import androidx.work.NetworkType;
 import androidx.work.OneTimeWorkRequest;
-import androidx.work.WorkInfo;
 import androidx.work.WorkManager;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -26,7 +23,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -214,6 +210,7 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
 
             }
         });
+
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -222,31 +219,15 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
                 String Massage = writeMassageEditText.getText().toString();
                 try {
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(Number, null, Massage, null, null);
-                    Toast.makeText(MvpActivity.this, "Sent", Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                    Toast.makeText(MvpActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        sendButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showNotificationWorkManager.enqueue(showWorkManagerRequest);
-                String Number = phoneNumberEditText.getText().toString();
-                String Massage = writeMassageEditText.getText().toString();
-                try {
-                    SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(Number, null, Massage, null, null);
                     Toast.makeText(MvpActivity.this, "Sent", Toast.LENGTH_SHORT).show();
                     String myDate = saveDateEditText.getText() + " " + saveTimeEditText.getText();
-                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyy/MM/dd HH:mm:ss");
+                    @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyy/MM/dd HH:mm:ss");
                     Date date = simpleDateFormat.parse(myDate);
                     long milis = date.getTime() - System.currentTimeMillis();
 //                    long minutes = TimeUnit.MILLISECONDS.toMinutes(milis - System.currentTimeMillis());
 
                     Data data = new Data.Builder()
-                            .putInt("number",10)
+                            .putString("number",Number)
                             .build();
                     Constraints constraints = new Constraints.Builder()
                             .build();
@@ -268,7 +249,7 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
         infoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MvpActivity.this, InfoDeliver.class);
+                Intent intent = new Intent(MvpActivity.this, SmsUserList.class);
                 startActivity(intent);
             }
         });
