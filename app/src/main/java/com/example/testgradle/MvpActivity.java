@@ -56,7 +56,7 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
     }
     private ImageView contactImageView;
     public static final String NUMBER = "contactName";
-    public static final String MASSAGE = "text";
+    public static final String MASSAGE = "";
     public static final String TAG = "MvpActivity";
     public static  final String MESSAGE_STATUS = "messageStatus";
     final WorkManager showNotificationWorkManager = WorkManager.getInstance();
@@ -197,20 +197,6 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
 
             }
         });
-        contactImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (ContextCompat.checkSelfPermission(MvpActivity.this, android.Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-                    ContactListDialog dialog = new ContactListDialog(MvpActivity.this, MvpActivity.this);
-                    dialog.show();
-                } else {
-                    requestPermissions(new String[]{android.Manifest.permission.READ_CONTACTS}, 112);
-                }
-
-            }
-        });
-
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -219,15 +205,15 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
                 String Massage = writeMassageEditText.getText().toString();
                 try {
                     SmsManager smsManager = SmsManager.getDefault();
-                    Toast.makeText(MvpActivity.this, "Sent", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MvpActivity.this, "Your Sms is Sent Please Wait A Minute", Toast.LENGTH_SHORT).show();
                     String myDate = saveDateEditText.getText() + " " + saveTimeEditText.getText();
                     @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyy/MM/dd HH:mm:ss");
                     Date date = simpleDateFormat.parse(myDate);
                     long milis = date.getTime() - System.currentTimeMillis();
-//                    long minutes = TimeUnit.MILLISECONDS.toMinutes(milis - System.currentTimeMillis());
 
                     Data data = new Data.Builder()
                             .putString("number",Number)
+                            .putString("text",Massage)
                             .build();
                     Constraints constraints = new Constraints.Builder()
                             .build();
