@@ -60,7 +60,6 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
     public static final String TAG = "MvpActivity";
     public static  final String MESSAGE_STATUS = "messageStatus";
     final WorkManager showNotificationWorkManager = WorkManager.getInstance();
-    final OneTimeWorkRequest showWorkManagerRequest = new OneTimeWorkRequest.Builder(NotificationWorker.class).build();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,7 +199,6 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showNotificationWorkManager.enqueue(showWorkManagerRequest);
                 String Number = phoneNumberEditText.getText().toString();
                 String Massage = writeMassageEditText.getText().toString();
                 try {

@@ -30,7 +30,7 @@ public class Schedule extends Worker  {
         SmsManager smsManager = SmsManager.getDefault();
         smsManager.sendTextMessage(number, null ,text, null, null);
         Log.d(TAG,"doWork:" + number + text);
-        showNotification("notification","Your Sms has been Sent");
+        showNotification("notification","Your Sms has been Sent To : ");
         return  Result.success();
 
     }
