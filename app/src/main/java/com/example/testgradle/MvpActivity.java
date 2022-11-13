@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -39,8 +40,8 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
     private Button timePickerButton;
     private AppCompatButton sendButton;
     private AppCompatButton infoButton;
-    private EditText saveDateEditText;
-    private EditText saveTimeEditText;
+    private TextView saveDateEditText;
+    private TextView saveTimeEditText;
     private int mYear;
     private int mMonth;
     private int mDay;

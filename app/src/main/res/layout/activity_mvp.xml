@@ -59,7 +59,7 @@
         android:hint="Write Text"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    <TextView
         android:id="@+id/saveDateEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
         android:textColor="#145369"
         tools:ignore="MissingConstraints" />
 
-    <EditText
+    <TextView
         android:id="@+id/saveTimeEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
         android:layout_marginLeft="1dp"
         android:layout_marginRight="1dp"
         android:textSize="14sp"
-        android:background="@drawable/customborder_send"
+        android:background="#5f266d"
         android:text="Send"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -147,7 +147,7 @@
         android:layout_marginRight="10dp"
         android:padding="10dp"
         android:textColor="@color/white"
-        android:background="@drawable/borderinfo"
+        android:background="#5f266d"
         app:layout_constraintTop_toBottomOf="@id/sendButton"
         app:layout_constraintLeft_toLeftOf="@id/sendButton"
         app:layout_constraintRight_toRightOf="@id/sendButton"

@@ -30,19 +30,19 @@ public class Schedule extends Worker  {
         SmsManager smsManager = SmsManager.getDefault();
         smsManager.sendTextMessage(number, null ,text, null, null);
         Log.d(TAG,"doWork:" + number + text);
-        showNotification("notification","Your Sms has been Sent To : ");
+        showNotification("Notification","Your Sms has been Sent ");
         return  Result.success();
 
     }
     public void showNotification(String title , String des){
         NotificationManager notificationManager = (NotificationManager)getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE );
-        String channelid="";
+        String channelId="";
         if (Build.VERSION.SDK_INT>=26){
-            NotificationChannel channel=new NotificationChannel(channelid,"home",NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationChannel channel=new NotificationChannel(channelId,"home",NotificationManager.IMPORTANCE_DEFAULT);
             notificationManager.createNotificationChannel(channel);
         }
         NotificationCompat.Builder notificationCompat = new
-                NotificationCompat.Builder(getApplicationContext(),channelid)
+                NotificationCompat.Builder(getApplicationContext(),channelId)
                 .setContentText(des)
                 .setContentTitle(title)
                 .setSmallIcon(R.mipmap.ic_launcher);

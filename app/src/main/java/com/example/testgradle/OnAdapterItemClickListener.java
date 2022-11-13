@@ -1,5 +1,6 @@
 package com.example.testgradle;
 
-public interface OnAdapterItemClickListener {
+public interface
+OnAdapterItemClickListener {
     void onAdapterItemClickListener(ContactModel contact);
 }
