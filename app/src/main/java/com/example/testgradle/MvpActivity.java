@@ -47,14 +47,6 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
     private int mDay;
     private int mHour;
     private int mMinute;
-
-    class MyDate {
-        int mYear;
-        int mMonth;
-        int mDay;
-        int mHour;
-        int mMinute;
-    }
     private ImageView contactImageView;
     public static final String NUMBER = "contactName";
     public static final String MASSAGE = "";
@@ -142,7 +134,7 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
         String namePattern = "@\"^09[0|1|2|3][0-9]{8}$\";";
 
         if (validate.isEmpty()) {
-            phoneNumberEditText.setError("Field cannot be empty");
+
             return false;
         } else if (!validate.matches(namePattern)) {
             phoneNumberEditText.setError("Add Your Name");
@@ -158,11 +150,11 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
         String validate = writeMassageEditText.getText().toString().trim();
         String textPattern = "";
         if (validate.isEmpty()) {
-            writeMassageEditText.setError("Field cannot empty");
+
             return false;
         } else if (!validate.matches(textPattern)) {
-            writeMassageEditText.setError("Invalid email address");
-            return false;
+            writeMassageEditText.setError(null);
+            return true;
         } else {
             writeMassageEditText.setError(null);
             return true;
@@ -216,13 +208,15 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
                             .build();
                     Constraints constraints = new Constraints.Builder()
                             .build();
-                    OneTimeWorkRequest downloadRequest = new OneTimeWorkRequest.Builder(Schedule.class)
+                    OneTimeWorkRequest smsRequest = new OneTimeWorkRequest.Builder(Schedule.class)
                             .setInputData(data)
                             .setConstraints(constraints)
                             .setInitialDelay(milis, TimeUnit.MILLISECONDS)
                             .addTag("download")
                             .build();
-                    WorkManager.getInstance(getApplicationContext()).enqueue(downloadRequest);
+                    WorkManager.getInstance(getApplicationContext()).enqueue(smsRequest);
+//                    Spref.put("requestId", smsRequest.getId().toString());
+
                 } catch (Exception e) {
                     Toast.makeText(MvpActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
                 }

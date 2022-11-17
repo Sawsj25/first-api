@@ -6,14 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
         <ImageView
             android:id="@+id/chat_background"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/chat_background_height"
+            android:layout_height="wrap_content"
             android:scaleType="centerCrop"
-            android:layout_margin="@dimen/CheckBox_layout_margin"
-            android:src="@drawable/wallbackground"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/main_icon"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toTopOf="@id/button_signIn"
@@ -22,15 +24,18 @@
                 android:id="@+id/button_signIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/AppCompatButton_button_signIn_layout_margin"
-                android:layout_marginTop="@dimen/AppCompatButton_button_signIn_layout_marginTop"
-                android:background="@drawable/customborder_sign_button"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/customborder_send"
                 android:gravity="center"
                 android:hint="@string/button_signin"
                 android:padding="@dimen/AppCompatButton_button_signIn_padding"
-                android:text="ورود به برنامه  "
+                android:text="ورود"
                 android:textColor="@color/white"
                 android:textSize="@dimen/AppCompatButton_button_signIn_textSize"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 tools:ignore="MissingConstraints" />
 

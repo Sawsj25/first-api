@@ -3,11 +3,11 @@ package com.example.testgradle;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.UUID;
+
 public class Spref {
 
-    public static final String EMAIL = "email";
-    public static final String PASSWORD = "password";
-    static SharedPreferences sharedPreferences;
+    private static SharedPreferences sharedPreferences;
 
     public static SharedPreferences getSharedPreferences(Context context) {
         if (sharedPreferences == null)
@@ -15,4 +15,6 @@ public class Spref {
         return sharedPreferences;
     }
 }
+
+
 

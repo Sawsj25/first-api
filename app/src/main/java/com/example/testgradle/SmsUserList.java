@@ -8,6 +8,8 @@ import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkInfo;
 import androidx.work.WorkManager;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.reflect.Modifier;
+import java.net.CookieHandler;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,26 +33,24 @@ public class SmsUserList extends AppCompatActivity {
     WorkManager workManager;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sms_list);
         displayItem();
-        OneTimeWorkRequest request = new OneTimeWorkRequest.Builder(Schedule.class).build();
         workManager = WorkManager.getInstance(this);
-        workManager.enqueue(request);
-        workManager.getWorkInfoByIdLiveData(request.getId()).observe(this, new Observer<WorkInfo>() {
-            @Override
-            public void onChanged(WorkInfo workInfo) {
-                if (workInfo != null) {
-                    if (workInfo.getState() == WorkInfo.State.RUNNING) {
-                        Toast.makeText(SmsUserList.this, "running", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        });
+//        barrasi shavad class sharepref
+//        workManager.getWorkInfoByIdLiveData(Spref.get("reqeustId")).observe(this, new Observer<WorkInfo>() {
+//            @Override
+//            public void onChanged(WorkInfo workInfo) {
+//                if (workInfo != null) {
+//                    Toast.makeText(SmsUserList.this, "Sms Is Scheduled", Toast.LENGTH_SHORT).show();
+//                   return ;
+//                }
+//            }
+//        });
     }
-
 
         private void displayItem(){
 

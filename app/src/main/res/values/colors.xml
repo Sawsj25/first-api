@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#095E56</color>
+    <color name="purple_500">#00E499</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
@@ -16,4 +16,5 @@
     <color name="sendColor">#A3EFE5</color>
     <color name="contactimage">#FF0000</color>
     <color name="background">#D3D3D3</color>
+    <color name="colortextinfo">#5f266d</color>
 </resources>
