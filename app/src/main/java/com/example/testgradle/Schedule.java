@@ -30,7 +30,7 @@ public class Schedule extends Worker  {
         SmsManager smsManager = SmsManager.getDefault();
         smsManager.sendTextMessage(number, null ,text, null, null);
         Log.d(TAG,"doWork:" + number + text);
-        showNotification("Notification","Your Sms has been Sent ");
+        showNotification("Sms Schedule"," پیام شما با موفقیت ارسال شد ");
         return  Result.success();
 
     }
@@ -45,7 +45,7 @@ public class Schedule extends Worker  {
                 NotificationCompat.Builder(getApplicationContext(),channelId)
                 .setContentText(des)
                 .setContentTitle(title)
-                .setSmallIcon(R.mipmap.ic_launcher);
+                .setSmallIcon(R.drawable.notif);
         notificationManager.notify(1,notificationCompat.build());
 
     }

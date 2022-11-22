@@ -3,7 +3,6 @@ package com.example.testgradle;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import java.util.UUID;
 
 public class Spref {
 

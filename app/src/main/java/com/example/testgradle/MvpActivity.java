@@ -196,7 +196,7 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
                 String Massage = writeMassageEditText.getText().toString();
                 try {
                     SmsManager smsManager = SmsManager.getDefault();
-                    Toast.makeText(MvpActivity.this, "Your Sms is Sent Please Wait A Minute", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MvpActivity.this, "پیام شما در زمان مشخص شده ارسال خواهد شد ", Toast.LENGTH_SHORT).show();
                     String myDate = saveDateEditText.getText() + " " + saveTimeEditText.getText();
                     @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyy/MM/dd HH:mm:ss");
                     Date date = simpleDateFormat.parse(myDate);
@@ -218,7 +218,7 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
 //                    Spref.put("requestId", smsRequest.getId().toString());
 
                 } catch (Exception e) {
-                    Toast.makeText(MvpActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MvpActivity.this, "مشکل در ارسال پیام ", Toast.LENGTH_SHORT).show();
                 }
             }
         });
