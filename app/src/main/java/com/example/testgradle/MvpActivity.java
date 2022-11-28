@@ -183,6 +183,7 @@ public class MvpActivity extends AppCompatActivity implements View.OnClickListen
                 if (ContextCompat.checkSelfPermission(MvpActivity.this, android.Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
                     ContactListDialog dialog = new ContactListDialog(MvpActivity.this, MvpActivity.this);
                     dialog.show();
+                    Toast.makeText(MvpActivity.this, " لطفا شماره موردنظر خود را انتخاب کنید ", Toast.LENGTH_SHORT).show();
                 } else {
                     requestPermissions(new String[]{android.Manifest.permission.READ_CONTACTS}, 112);
                 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/garadiantmainbackground"
+    android:background="@drawable/mainbackground3"
     tools:context=".MvpActivity">
 
 
@@ -78,6 +78,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:padding="10dp"
+        android:minWidth="100dp"
         android:background="@drawable/customborder_showdate"
         app:layout_constraintTop_toBottomOf="@id/sendCardView"
         app:layout_constraintLeft_toLeftOf="parent"

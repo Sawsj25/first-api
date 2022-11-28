@@ -16,5 +16,6 @@
     <color name="sendColor">#A3EFE5</color>
     <color name="contactimage">#FF0000</color>
     <color name="background">#D3D3D3</color>
-    <color name="colortextinfo">#5f266d</color>
+    <color name="colortextinfo">#5160B1</color>
+    <color name="mainbackground">#B0B6B6</color>
 </resources>

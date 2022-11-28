@@ -1,7 +1,6 @@
 package com.example.testgradle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.work.OneTimeWorkRequest;
@@ -22,6 +21,7 @@ import java.lang.reflect.Modifier;
 import java.net.CookieHandler;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observer;
 
 public class SmsUserList extends AppCompatActivity {
     private EditText searchEditText;
@@ -39,7 +39,8 @@ public class SmsUserList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sms_list);
         displayItem();
-        workManager = WorkManager.getInstance(this);
+//        workManager = WorkManager.getInstance(this).getWorkInfoByIdLiveData(Spref.getSharedPreferences())
+
 //        barrasi shavad class sharepref
 //        workManager.getWorkInfoByIdLiveData(Spref.get("reqeustId")).observe(this, new Observer<WorkInfo>() {
 //            @Override
@@ -54,12 +55,12 @@ public class SmsUserList extends AppCompatActivity {
 
         private void displayItem(){
 
-        recyclerView = findViewById(R.id.rvContacts);
-        myModelList = new ArrayList<>();
-        myModelList.add(new MyModel("Sajjad","26"));
-        myModelList.add(new MyModel("ali","25"));
-        customAdapter = new CustomAdapter(this,myModelList);
-        recyclerView.setAdapter(customAdapter);
+//        recyclerView = findViewById(R.id.rvContacts);
+//        myModelList = new ArrayList<>();
+//        myModelList.add(new MyModel("Sajjad","26"));
+//        myModelList.add(new MyModel("ali","25"));
+//        customAdapter = new CustomAdapter(this,myModelList);
+//        recyclerView.setAdapter(customAdapter);
 
     }
 }
