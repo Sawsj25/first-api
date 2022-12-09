@@ -48,6 +48,5 @@ public class Schedule extends Worker  {
                 .setSmallIcon(R.drawable.notif);
         notificationManager.notify(1,notificationCompat.build());
 
-
     }
 }

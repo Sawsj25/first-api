@@ -9,6 +9,7 @@ import androidx.work.WorkManager;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import java.net.CookieHandler;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observer;
+import java.util.Random;
 
 public class SmsUserList extends AppCompatActivity {
     private EditText searchEditText;
@@ -31,6 +33,10 @@ public class SmsUserList extends AppCompatActivity {
     private TextView textView_number;
     private TextView textView_Name;
     WorkManager workManager;
+    final TypedArray imgs= getResources().obtainTypedArray(R.array.random_images_array);
+    final Random rand = new Random();
+    final int rndInt=rand.nextInt(imgs.length());
+    final int resID= imgs.getResourceId(rndInt,0);
 
 
 
@@ -39,28 +45,15 @@ public class SmsUserList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sms_list);
         displayItem();
-//        workManager = WorkManager.getInstance(this).getWorkInfoByIdLiveData(Spref.getSharedPreferences())
-
-//        barrasi shavad class sharepref
-//        workManager.getWorkInfoByIdLiveData(Spref.get("reqeustId")).observe(this, new Observer<WorkInfo>() {
-//            @Override
-//            public void onChanged(WorkInfo workInfo) {
-//                if (workInfo != null) {
-//                    Toast.makeText(SmsUserList.this, "Sms Is Scheduled", Toast.LENGTH_SHORT).show();
-//                   return ;
-//                }
-//            }
-//        });
     }
 
         private void displayItem(){
-
-//        recyclerView = findViewById(R.id.rvContacts);
-//        myModelList = new ArrayList<>();
-//        myModelList.add(new MyModel("Sajjad","26"));
-//        myModelList.add(new MyModel("ali","25"));
-//        customAdapter = new CustomAdapter(this,myModelList);
-//        recyclerView.setAdapter(customAdapter);
+        recyclerView = findViewById(R.id.rvContacts);
+        myModelList = new ArrayList<>();
+        myModelList.add(new MyModel("Sajjad","26"));
+        myModelList.add(new MyModel("ali","25"));
+        customAdapter = new CustomAdapter(this,myModelList);
+        recyclerView.setAdapter(customAdapter);
 
     }
 }
